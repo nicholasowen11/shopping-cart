@@ -42,6 +42,9 @@ const ProductList = ({ sortOrder }: { sortOrder: 'asc' | 'desc' }) => {
         </main>
     )
 
+    console.log("Products:", products);
+    console.log("Sorted Products:", sortedProducts);
+
     return content
 }
 

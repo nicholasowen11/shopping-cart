@@ -1,6 +1,9 @@
-import { useState } from "react"
-import useCart from "../hooks/useCart"
-import CartLineItem from "./CartLineItem"
+import { useState } from "react";
+import useCart from "../hooks/useCart";
+import CartLineItem from "./CartLineItem";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 const Cart = () => {
     const [confirm, setConfirm] = useState<boolean>(false)
@@ -29,13 +32,27 @@ const Cart = () => {
                 )
             })}
         </ul>
-        <div className="cart__totals">
+        <Box sx={{ textAlign: "center", mt: 2 }}>
+        <Typography variant="h6">Total Items: {totalItems}</Typography>
+        <Typography variant="h6">Total Price: {totalPrice}</Typography>
+
+        <Button 
+            variant="contained" 
+            color="primary" 
+            disabled={!totalItems} 
+            onClick={onSubmitOrder}
+            sx={{ mt: 2 }}
+        >
+            Place Order
+            </Button>
+        </Box>
+        {/* <div className="cart__totals">
             <p>Total Items: {totalItems}</p>
             <p>Total Price: {totalPrice}</p>
             <button className="cart__submit" disabled={!totalItems} onClick={onSubmitOrder}>
                 Place Order
             </button>
-        </div>
+        </div> */}
     </>
 
     const content = (
