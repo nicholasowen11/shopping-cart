@@ -127,3 +127,5 @@ export const CartProvider = ({ children }: ChildrenType): ReactElement => {
         </CartContext.Provider>
     )
 }
+
+export default CartContext
