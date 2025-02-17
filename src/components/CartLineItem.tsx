@@ -1,7 +1,10 @@
-import { ChangeEvent, ReactElement } from "react"
+// import { ChangeEvent, ReactElement } from "react"
 import { CartItemType } from "../context/CartProvider"
 import { ReducerAction } from "../context/CartProvider"
 import { ReducerActionType } from "../context/CartProvider"
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { SelectChangeEvent } from "@mui/material";
 
 type PropsType = {
   item: CartItemType,
@@ -23,16 +26,23 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
 
   const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
 
-  const options: ReactElement[] = optionValues.map(val => {
-    return <option key={`opt${val}`} value={val}>{val}</option>
-  })
+  // const options: ReactElement[] = optionValues.map(val => {
+  //   return <option key={`opt${val}`} value={val}>{val}</option>
+  // })
 
-  const onChangeQty = (e: ChangeEvent<HTMLSelectElement>) => {
+  const onChangeQty = (event: SelectChangeEvent<number>) => {
     dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...item, qty: Number(e.target.value) }
-    })
-  }
+        type: REDUCER_ACTIONS.QUANTITY,
+        payload: { ...item, qty: Number(event.target.value) }
+    });
+  };
+
+  // const onChangeQty = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   dispatch({
+  //     type: REDUCER_ACTIONS.QUANTITY,
+  //     payload: { ...item, qty: Number(e.target.value) }
+  //   })
+  // }
 
   const onRemoveFromCart = () => dispatch({
     type: REDUCER_ACTIONS.REMOVE,
@@ -51,7 +61,7 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
       <label htmlFor="itemQty" className="offscreen">
         Item Quantity
       </label>
-      <select 
+      {/* <select 
       name="itemQty" 
       id="itemQty" 
       className="cart__select"
@@ -59,7 +69,18 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
       aria-label="Item Quantity"
       onChange={onChangeQty}>
         {options}
-      </select>
+      </select> */}
+
+      <Select 
+        value={item.qty}
+        onChange={onChangeQty}
+        displayEmpty
+        sx={{ width: 80, height: 30, fontSize: "0.875rem", padding: "4px" }}
+        >
+        {optionValues.map(val => (
+          <MenuItem key={val} value={val}>{val}</MenuItem>
+        ))}
+      </Select>
 
       <div className="cart__item-subtotal" aria-label="Line Item Subtotal">
         {new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(lineTotal)}
