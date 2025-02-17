@@ -56,5 +56,3 @@ export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
     )
 
 }
-
-export default ProductsContext 

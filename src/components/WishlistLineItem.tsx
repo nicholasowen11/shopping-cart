@@ -36,5 +36,3 @@ const WishlistLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
         </li>
     );
 };
-
-export default WishlistLineItem;

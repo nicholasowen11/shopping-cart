@@ -6,4 +6,4 @@ const useCart = (): UseCartContextType => {
     return useContext(CartContext)
 }
 
-export default useCart
+export default useCart;

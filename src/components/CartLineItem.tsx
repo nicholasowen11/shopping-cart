@@ -77,5 +77,3 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
 
   return content
 } 
-
-export default CartLineItem
